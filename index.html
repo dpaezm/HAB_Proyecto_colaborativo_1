@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,22 +7,75 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header><h1>Juego preguntas y respuestas sobre películas</h1></header>
+    <header>
+      <!-- <h1>Juego preguntas y respuestas sobre películas</h1> -->
+    </header>
     <main>
-      <section id="question-section">
-        <h2 id="question">Aquí va la pregunta</h2>
-        <ul id="answers">
+      <section class="question-section">
+        <h2 id="question1">What breed of dog was Marley in the film "Marley & Me" (2008)?</h2>
+        <ul class="answers">
           <!-- Aquí generamos las respuestas con DOM -->
+          <!-- Voy a generar un texto para darle formato CSS -->
+          <li>
+            <button>Labrador Retriever</button>
+          </li>
+          <li>
+            <button>Dalmatian</button>
+          </li>
+          <li>
+            <button>Golden Retriever</button>
+          </li>
+          <li>
+            <button>Shiba Inu</button>
+          </li>
         </ul>
       </section>
+      <!-- <section class="question-section">
+        <h2 id="question2">Which of the following is not the name of a "Bond Girl"?</h2>
+        <ul class="answers">
 
-      <section id="contadorAciertos">
-        <h3>Contador de aciertos</h3>
-        <p id="contador">Llevas X aciertos de X preguntas</p>
+          <li>
+            <button>Pam Bouvier</button>
+          </li>
+          <li>
+            <button>Vanessa Kensington</button>
+          </li>
+          <li>
+            <button>Wai Lin</button>
+          </li>
+          <li>
+            <button>Mary Goodnight</button>
+          </li>
+        </ul>
+      </section>
+      <section class="question-section">
+        <h2 id="question3">Which movie released in 2016 features Superman and Batman fighting?</h2>
+        <ul class="answers">
+
+          <li>
+            <button>Batman v Superman: Black of Knight</button>
+          </li>
+          <li>
+            <button>Batman v Superman: Knightfall</button>
+          </li>
+          <li>
+            <button>Batman v Superman: Superapocalypse</button>
+          </li>
+          <li>
+            <button>Batman v Superman: Dawn of Justice</button>
+          </li>
+        </ul>
+      </section> -->
+      <section id="section-progreso">
+        <progress id="progress-bar" value="10" max="50">50 %</progress>
+        <span id="progress-text">Pregunta 10/50</span>
       </section>
     </main>
-
     <footer>
+      <!-- <section id="contadorAciertos">
+        <h3>Contador de aciertos</h3>
+        <p id="contador">Llevas X aciertos de X preguntas</p>
+      </section> -->
       <p>© 2025 Juego de Preguntas y Respuestas</p>
     </footer>
     <script src="script.js"></script>
