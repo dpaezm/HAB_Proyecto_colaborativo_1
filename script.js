@@ -1,89 +1,89 @@
 "use strict";
 
-let contadorPaginas = 0;
-let datosGeneral = [];
+let result = 0;
+let index = 0;
+let questions = [];
+const barra1 = document.querySelector(".progress");
+let puntuacionId = document.getElementById("contador");
 
-function refrescarPagina(pregunta, respuestas, correcta) {
-  const questionSection = document.getElementById("question-section");
-  //Limpiamos contenido
-  questionSection.innerHTML = `<h2 id="question"></h2>
-        <ul id="answers"> </ul>`;
-
-  const listaBotones = document.getElementById("answers");
-  const question = document.getElementById("question");
-
-  //cambio texto pregunta
-  question.textContent = pregunta;
-
-  for (const respuesta of respuestas) {
-    const li = document.createElement("li");
-
-    //Crear botónes respuestas
-    const boton = document.createElement("button");
-    boton.textContent = respuesta;
-    //Funcion que comparara respuestas correctas e incorrectas
-    boton.addEventListener("click", () => {
-      if (respuesta === correcta) {
-        console.log("Respuesta Correcta!");
-      } else {
-        console.log("Respuesta Incorrecta!");
-      }
-    });
-
-    //Añadimos boton al li yy despues el bloque completo a answers
-    li.appendChild(boton);
-    listaBotones.appendChild(li);
-  }
-
-  //Crear boton next
-  const botonNext = document.createElement("button");
-  botonNext.textContent = "siguente";
-  botonNext.addEventListener("click", () => {
-    contadorPaginas++;
-    recorrerDatos(datosGeneral, contadorPaginas);
-  });
-  question.appendChild(botonNext);
-}
-
-let resultado = 0;
-
-function cargarDatos() {
+function loadData() {
   fetch("quiz.json")
     .then((response) => {
       if (!response.ok) {
         throw new Error(`Error al cargar el archivo: ${response.status}`);
       }
-      return response.json(); // Convierte la respuesta en JSON
+      return response.json();
     })
     .then((datos) => {
-      datosGeneral = [...datos];
-      recorrerDatos(datos, contadorPaginas);
-      //console.log(datos);
+      questions = datos;
+      showQuestion();
     })
     .catch((error) => {
       console.error("Error:", error);
     });
 }
 
-function recorrerDatos(datos, pagina) {
-  //let arrayTotal =  [];
-  //for (const clave in datos) {
-  let data = datos[pagina];
-  let pregunta = data.question;
-  let respuestas = [...data.answers];
+function showQuestion() {
+  const listaBotones = document.querySelector(".answers");
+  const pregunta = document.getElementById("question");
 
-  let respuestaCorrecta = data.correct;
-  refrescarPagina(pregunta, respuestas, respuestaCorrecta);
-  //console.log(respuestas);
-  //}
-}
+  if (index < questions.length) {
+    let questionData = questions[index];
 
-cargarDatos();
+    pregunta.textContent = questionData.question;
 
-function comprobarRespuesta(respuestaCorrecta) {
-  let opcionSeleccionada;
-  if (respuestaCorrecta === opcionSeleccionada) {
-    console.log("Correcto");
-    resultado++;
+    listaBotones.innerHTML = "";
+
+    questionData.answers.forEach((answer) => {
+      const li = document.createElement("li");
+      const boton = document.createElement("button");
+
+      boton.textContent = answer;
+
+      li.appendChild(boton);
+      listaBotones.appendChild(li);
+
+      boton.addEventListener("click", () => {
+        const botones = listaBotones.querySelectorAll("button");
+        boton.classList.add("seleccionado");
+
+        botones.forEach((boton) => {
+          boton.disabled = true;
+        });
+        checkAnswer(answer, questionData.correct);
+      });
+    });
+
+    index++;
+  } else {
+    pregunta.textContent = "";
+    listaBotones.innerHTML = "";
+
+    contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length}`;
   }
 }
+
+function checkAnswer(answer, correct) {
+  if (answer === correct) {
+    console.log("Respuesta Correcta!");
+    result++;
+    showCurrentResult();
+  } else {
+    console.log("Respuesta Incorrecta!");
+    showCurrentResult();
+  }
+  setTimeout(() => {
+    showQuestion();
+  }, 500);
+}
+
+function showCurrentResult() {
+  const barra = document.querySelector(".progress-bar");
+  let parte = 100 / questions.length;
+  let width = index * parte + "%";
+  barra.style.width = width;
+
+  barra.textContent = width;
+}
+
+loadData();
