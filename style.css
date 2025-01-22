@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mystery+Quest&display=swap");
 
 * {
   margin: 0;
@@ -39,9 +40,9 @@ body {
 
 header {
   display: flex;
-  align-items: flex-start;
-  /* height: 10vh; */
-  padding: var(--espaciado);
+  justify-content: center;
+  align-items: flex-end;
+  height: 3rem;
 }
 
 main {
@@ -56,16 +57,25 @@ main {
 section.question-section {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   margin-bottom: 5rem;
+  height: 100%;
+
+  opacity: 1;
 }
 
 h1 {
-  font-size: 0.8rem;
-  text-decoration: underline;
+  font-family: "Mystery Quest", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.2rem;
+  color: var(--color-letra2);
 }
 
 h2 {
+  z-index: 2;
+  position: relative;
   color: var(--color-letra);
   font-size: 1rem;
   background-color: var(--color-secundario);
@@ -73,16 +83,16 @@ h2 {
   max-width: 700px;
   height: fit-content;
   min-height: 110px;
-  padding: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   border: 2px solid black;
   border-radius: 3rem;
   display: flex;
   align-items: center;
-  position: relative;
-  top: 5rem;
 }
 
 ul.answers {
+  position: relative;
   height: calc(var(--espaciado) * 23);
   width: 80vw;
   max-width: 800px;
@@ -96,6 +106,7 @@ ul.answers {
   justify-content: flex-end;
   align-items: center;
   gap: 1rem;
+  margin-top: -4rem;
 }
 
 li {
@@ -119,6 +130,31 @@ li button {
 
 li button:hover {
   background-color: var(--color-aux2);
+}
+
+#section-FinJuego {
+  position: absolute;
+  top: 40%;
+  box-shadow: 10px 10px black;
+  z-index: 2;
+  color: var(--color-letra);
+  font-size: 1rem;
+  background-color: var(--color-secundario);
+  width: 70vw;
+  max-width: 700px;
+  height: fit-content;
+  min-height: 110px;
+  border: 2px solid black;
+  border-radius: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+
+  opacity: 0;
+}
+
+#section-FinJuego p {
 }
 
 footer {
@@ -161,6 +197,12 @@ footer p {
 @media (min-width: 600px) {
   html {
     font-size: 20px;
+  }
+}
+
+@media (min-width: 800px) {
+  ul.answers {
+    display: grid;
   }
 }
 
