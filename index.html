@@ -10,67 +10,27 @@
     <header><h1>Pon a prueba tus conocimientos sobre cine</h1></header>
     <main>
       <section class="question-section">
-        <h2 id="question1">What breed of dog was Marley in the film "Marley & Me" (2008)?</h2>
+        <h2 id="question"></h2>
         <ul class="answers">
           <!-- Aquí generamos las respuestas con DOM -->
-          <!-- Voy a generar un texto para darle formato CSS -->
-          <li>
-            <button>Labrador Retriever</button>
-          </li>
-          <li>
-            <button>Dalmatian</button>
-          </li>
-          <li>
-            <button>Golden Retriever</button>
-          </li>
-          <li>
-            <button>Shiba Inu</button>
-          </li>
         </ul>
       </section>
-      <!-- <section class="question-section">
-        <h2 id="question2">Which of the following is not the name of a "Bond Girl"?</h2>
-        <ul class="answers">
 
-          <li>
-            <button>Pam Bouvier</button>
-          </li>
-          <li>
-            <button>Vanessa Kensington</button>
-          </li>
-          <li>
-            <button>Wai Lin</button>
-          </li>
-          <li>
-            <button>Mary Goodnight</button>
-          </li>
-        </ul>
-      </section>
-      <section class="question-section">
-        <h2 id="question3">Which movie released in 2016 features Superman and Batman fighting?</h2>
-        <ul class="answers">
-
-          <li>
-            <button>Batman v Superman: Black of Knight</button>
-          </li>
-          <li>
-            <button>Batman v Superman: Knightfall</button>
-          </li>
-          <li>
-            <button>Batman v Superman: Superapocalypse</button>
-          </li>
-          <li>
-            <button>Batman v Superman: Dawn of Justice</button>
-          </li>
-        </ul>
+      <!--       <section id="section-progreso">
+        <progress id="progress-bar"></progress>
+         <span id="progress-text"></span>
       </section> -->
       <section id="section-progreso">
-        <progress id="progress-bar" value="10" max="50">50 %</progress>
-        <span id="progress-text">Pregunta 10/50</span>
+        <p id="contador"></p>
+        <div class="progress">
+          <div class="progress-bar"></div>
+        </div>
+        <!-- <div class="progress-bar"></div> -->
+        <!-- <span id="progress-text">Pregunta 10/50</span> -->
       </section>
       <section id="section-FinJuego">
         <p>Fin del juego</p>
-        <p>Has obtenido una puntuación de 31 sobre 50</p>
+        <p id="resultado"></p>
         <p>¡Buen trabajo!</p>
       </section>
     </main>
