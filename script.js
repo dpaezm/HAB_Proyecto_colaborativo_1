@@ -30,9 +30,6 @@ function loadData() {
 }
 
 function showQuestion() {
-  const listaBotones = document.querySelector(".answers");
-  const pregunta = document.getElementById("question");
-
   if (index < questions.length) {
     let questionData = questions[index];
 
@@ -62,21 +59,6 @@ function showQuestion() {
 
     index++;
   } else {
-    const numeroRandom = Math.floor(Math.random() * 4);
-
-    if (result < questions.length / 4) {
-      contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.veryBad[numeroRandom]}`;
-    } else if (result > questions.length / 4 && result < questions.length / 2) {
-      contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.bad[numeroRandom]}`;
-    } else if (
-      result > questions.length / 2 &&
-      result < (questions.length / 4) * 3
-    ) {
-      contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.good[numeroRandom]}`;
-    } else {
-      contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.veryGood[numeroRandom]}`;
-    }
-
     finalResult();
   }
 }
@@ -151,3 +133,18 @@ function playAgain() {
 }
 
 loadData();
+
+//Para el modo dia - noche
+
+const botonModoDia = document.getElementById("boton-modo-dia");
+const textModoDia = document.getElementById("text-modo-dia");
+const html = document.documentElement;
+
+botonModoDia.addEventListener("click", () => {
+  html.classList.toggle("dark");
+  if (html.classList.contains("dark")) {
+    textModoDia.textContent = "NIGHT MODE";
+  } else {
+    textModoDia.textContent = "DAY MODE";
+  }
+});
