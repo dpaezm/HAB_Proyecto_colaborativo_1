@@ -159,6 +159,9 @@ button:hover {
 
 #section-FinJuego p {
   padding-top: 0.5rem;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
 }
 
 #juego-nuevo {

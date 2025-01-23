@@ -30,12 +30,10 @@ function loadData() {
 }
 
 function showQuestion() {
-
   const listaBotones = document.querySelector(".answers");
   const pregunta = document.getElementById("question");
 
   if (index < questions.length) {
-
     let questionData = questions[index];
 
     pregunta.textContent = questionData.question;
@@ -59,13 +57,6 @@ function showQuestion() {
           boton.disabled = true;
         });
         checkAnswer(answer, questionData.correct);
-      });
-
-      boton.addEventListener("mouseenter", () => {
-        boton.style.backgroundColor = "#c1b7ff";
-      });
-      boton.addEventListener("mouseleave", () => {
-        boton.style.backgroundColor = "white";
       });
     });
 
@@ -117,7 +108,11 @@ function finalResult() {
   const seccionPreguntas = document.querySelector("section.question-section");
   const seccionFinJuego = document.querySelector("#section-FinJuego");
 
+  const fraseFinal = document.querySelector("#frase-resultado");
+
   resultadoFinal.textContent = `You scored ${result} off ${questions.length}`;
+
+  fraseFinal.textContent = obtenerFraseFinal();
 
   seccionFinJuego.style.opacity = 1;
   seccionFinJuego.style.zIndex = 2;
@@ -130,6 +125,20 @@ function finalResult() {
   barra1.style.opacity = 0;
 
   playAgain();
+}
+
+function obtenerFraseFinal() {
+  const numeroRandom = Math.floor(Math.random() * 4);
+
+  if (result < 13) {
+    return `${frases.veryBad[numeroRandom]}`;
+  } else if (result > 12 && result < 25) {
+    return `${frases.bad[numeroRandom]}`;
+  } else if (result > 24 && result < 38) {
+    return `${frases.good[numeroRandom]}`;
+  } else {
+    return `${frases.veryGood[numeroRandom]}`;
+  }
 }
 
 function playAgain() {
