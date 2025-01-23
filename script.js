@@ -5,6 +5,9 @@ let index = 0;
 let questions = [];
 const barra1 = document.querySelector(".progress");
 let puntuacionId = document.getElementById("contador");
+import { frasesFinales } from "./helpers.js";
+
+let frases = frasesFinales;
 
 function loadData() {
   fetch("quiz.json")
@@ -27,7 +30,7 @@ function showQuestion() {
   const listaBotones = document.querySelector(".answers");
   const pregunta = document.getElementById("question");
 
-  if (index < questions.length) {
+  if (index < 5) {
     let questionData = questions[index];
 
     pregunta.textContent = questionData.question;
@@ -52,6 +55,13 @@ function showQuestion() {
         });
         checkAnswer(answer, questionData.correct);
       });
+
+      boton.addEventListener("mouseenter", () => {
+        boton.style.backgroundColor = "#c1b7ff";
+      });
+      boton.addEventListener("mouseleave", () => {
+        boton.style.backgroundColor = "white";
+      });
     });
 
     index++;
@@ -59,7 +69,20 @@ function showQuestion() {
     pregunta.textContent = "";
     listaBotones.innerHTML = "";
 
-    contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length}`;
+    const numeroRandom = Math.floor(Math.random() * 4);
+
+    if (result < questions.length / 4) {
+      contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.veryBad[numeroRandom]}`;
+    } else if (result > questions.length / 4 && result < questions.length / 2) {
+      contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.bad[numeroRandom]}`;
+    } else if (
+      result > questions.length / 2 &&
+      result < (questions.length / 4) * 3
+    ) {
+      contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.good[numeroRandom]}`;
+    } else {
+      contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.veryGood[numeroRandom]}`;
+    }
   }
 }
 
