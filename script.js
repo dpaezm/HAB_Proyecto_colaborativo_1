@@ -80,6 +80,7 @@ function updateProgressBar() {
 
   barra.style.width = width;
   barra.textContent = width;
+  console.log(barra);
 }
 
 function finalResult() {
@@ -89,7 +90,10 @@ function finalResult() {
   resultadoFinal.textContent = `You scored ${result} off ${questions.length}`;
 
   seccionFinJuego.style.opacity = 1;
+  seccionFinJuego.style.zIndex = 2;
   seccionPreguntas.style.opacity = 1;
+  seccionPreguntas.style.zIndex = -2;
+
   pregunta.style.opacity = 0;
   listaBotones.style.opacity = 0;
   barra.style.opacity = 0;
