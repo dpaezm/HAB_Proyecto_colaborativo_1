@@ -71,21 +71,6 @@ function showQuestion() {
     index++;
   } else {
     finalResult();
-
-    const numeroRandom = Math.floor(Math.random() * 4);
-
-    if (result < questions.length / 4) {
-      contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.veryBad[numeroRandom]}`;
-    } else if (result > questions.length / 4 && result < questions.length / 2) {
-      contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.bad[numeroRandom]}`;
-    } else if (
-      result > questions.length / 2 &&
-      result < (questions.length / 4) * 3
-    ) {
-      contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.good[numeroRandom]}`;
-    } else {
-      contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.veryGood[numeroRandom]}`;
-    }
   }
 }
 
@@ -116,7 +101,11 @@ function finalResult() {
   const seccionPreguntas = document.querySelector("section.question-section");
   const seccionFinJuego = document.querySelector("#section-FinJuego");
 
+  const fraseFinal = document.querySelector("#frase-resultado");
+
   resultadoFinal.textContent = `You scored ${result} off ${questions.length}`;
+
+  fraseFinal.textContent = obtenerFraseFinal();
 
   seccionFinJuego.style.opacity = 1;
   seccionFinJuego.style.zIndex = 2;
@@ -129,6 +118,20 @@ function finalResult() {
   barra1.style.opacity = 0;
 
   playAgain();
+}
+
+function obtenerFraseFinal() {
+  const numeroRandom = Math.floor(Math.random() * 4);
+
+  if (result < 13) {
+    return `${frases.veryBad[numeroRandom]}`;
+  } else if (result > 12 && result < 25) {
+    return `${frases.bad[numeroRandom]}`;
+  } else if (result > 24 && result < 38) {
+    return `${frases.good[numeroRandom]}`;
+  } else {
+    return `${frases.veryGood[numeroRandom]}`;
+  }
 }
 
 function playAgain() {
