@@ -151,3 +151,18 @@ function playAgain() {
 }
 
 loadData();
+
+//Para el modo dia - noche
+
+const botonModoDia = document.getElementById("boton-modo-dia");
+const textModoDia = document.getElementById("text-modo-dia");
+const html = document.documentElement;
+
+botonModoDia.addEventListener("click", () => {
+  html.classList.toggle("dark");
+  if (html.classList.contains("dark")) {
+    textModoDia.textContent = "NIGHT MODE";
+  } else {
+    textModoDia.textContent = "DAY MODE";
+  }
+});
