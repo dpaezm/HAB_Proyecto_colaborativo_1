@@ -32,7 +32,6 @@ html.dark {
 }
 
 body {
-  color: black; 
   font-family: "manrope", sans-serif;
   display: flex;
   flex-direction: column;
@@ -179,6 +178,7 @@ li:last-child {
 }
 
 li button {
+      color: var(color-letra2); 
   font-size: 1rem;
   width: 80%;
   height: 3rem;
