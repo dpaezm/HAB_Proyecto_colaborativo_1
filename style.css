@@ -178,11 +178,10 @@ li:last-child {
 }
 
 li button {
-      color: var(--color-letra2); 
+  color: #000; 
   font-size: 1rem;
   width: 80%;
   height: 3rem;
-  background-color: var(--);
   border-radius: 1rem;
   box-shadow: 5px 5px black;
 }
