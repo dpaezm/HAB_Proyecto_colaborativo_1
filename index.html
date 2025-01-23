@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Juego de preguntas y respuestas</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="imagen/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="imagen/favicon.webp" type="image/webp" />
   </head>
   <body>
-    <header><h1>Pon a prueba tus conocimientos sobre cine</h1></header>
+    <header><h1>Test your movie knowledge</h1></header>
     <main>
       <section class="question-section">
         <h2 id="question"></h2>
@@ -15,34 +17,20 @@
           <!-- Aquí generamos las respuestas con DOM -->
         </ul>
       </section>
-
-      <!--       <section id="section-progreso">
-        <progress id="progress-bar"></progress>
-         <span id="progress-text"></span>
-      </section> -->
       <section id="section-progreso">
-        <p id="contador"></p>
         <div class="progress">
           <div class="progress-bar"></div>
         </div>
-        <!-- <div class="progress-bar"></div> -->
-        <!-- <span id="progress-text">Pregunta 10/50</span> -->
       </section>
       <section id="section-FinJuego">
-        <p id="resultado"></p>
-
         <p>Game over</p>
-        <p>You scored 31 off 50</p>
+        <p id="resultado"></p>
         <p>Great job!</p>
         <button id="juego-nuevo">Play again!</button>
       </section>
     </main>
     <footer>
-      <!-- <section id="contadorAciertos">
-        <h3>Contador de aciertos</h3>
-        <p id="contador">Llevas X aciertos de X preguntas</p>
-      </section> -->
-      <p>© 2025 Juego de Preguntas y Respuestas</p>
+      <p>© 2025 Q&A quiz</p>
     </footer>
     <script src="script.js" type="module"></script>
   </body>

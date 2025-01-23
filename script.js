@@ -4,10 +4,13 @@ let result = 0;
 let index = 0;
 let questions = [];
 const barra1 = document.querySelector(".progress");
-let puntuacionId = document.getElementById("contador");
 import { frasesFinales } from "./helpers.js";
 
 let frases = frasesFinales;
+let resultadoFinal = document.getElementById("resultado");
+const listaBotones = document.querySelector(".answers");
+const pregunta = document.getElementById("question");
+const barra = document.querySelector(".progress-bar");
 
 function loadData() {
   fetch("quiz.json")
@@ -27,10 +30,12 @@ function loadData() {
 }
 
 function showQuestion() {
+
   const listaBotones = document.querySelector(".answers");
   const pregunta = document.getElementById("question");
 
-  if (index < 5) {
+  if (index < questions.length) {
+
     let questionData = questions[index];
 
     pregunta.textContent = questionData.question;
@@ -66,9 +71,6 @@ function showQuestion() {
 
     index++;
   } else {
-    pregunta.textContent = "";
-    listaBotones.innerHTML = "";
-
     const numeroRandom = Math.floor(Math.random() * 4);
 
     if (result < questions.length / 4) {
@@ -83,6 +85,8 @@ function showQuestion() {
     } else {
       contador.textContent = `Has obtenido una puntuación de ${result} sobre ${questions.length} ${frases.veryGood[numeroRandom]}`;
     }
+
+    finalResult();
   }
 }
 
@@ -90,23 +94,51 @@ function checkAnswer(answer, correct) {
   if (answer === correct) {
     console.log("Respuesta Correcta!");
     result++;
-    showCurrentResult();
+    updateProgressBar();
   } else {
     console.log("Respuesta Incorrecta!");
-    showCurrentResult();
+    updateProgressBar();
   }
   setTimeout(() => {
     showQuestion();
   }, 500);
 }
 
-function showCurrentResult() {
-  const barra = document.querySelector(".progress-bar");
+function updateProgressBar() {
   let parte = 100 / questions.length;
   let width = index * parte + "%";
-  barra.style.width = width;
 
+  barra.style.width = width;
   barra.textContent = width;
+  console.log(barra);
+}
+
+function finalResult() {
+  const seccionPreguntas = document.querySelector("section.question-section");
+  const seccionFinJuego = document.querySelector("#section-FinJuego");
+
+  resultadoFinal.textContent = `You scored ${result} off ${questions.length}`;
+
+  seccionFinJuego.style.opacity = 1;
+  seccionFinJuego.style.zIndex = 2;
+  seccionPreguntas.style.opacity = 1;
+  seccionPreguntas.style.zIndex = -2;
+
+  pregunta.style.opacity = 0;
+  listaBotones.style.opacity = 0;
+  barra.style.opacity = 0;
+  barra1.style.opacity = 0;
+
+  playAgain();
+}
+
+function playAgain() {
+  const playAgainButton = document.getElementById("juego-nuevo");
+  playAgainButton.addEventListener("click", () => {
+    setTimeout(() => {
+      location.reload();
+    }, 500);
+  });
 }
 
 loadData();
