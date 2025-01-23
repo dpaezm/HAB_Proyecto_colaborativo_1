@@ -32,6 +32,7 @@ html.dark {
 }
 
 body {
+  color: black; 
   font-family: "manrope", sans-serif;
   display: flex;
   flex-direction: column;
