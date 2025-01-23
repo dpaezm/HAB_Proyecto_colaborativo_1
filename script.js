@@ -12,10 +12,6 @@ const listaBotones = document.querySelector(".answers");
 const pregunta = document.getElementById("question");
 const barra = document.querySelector(".progress-bar");
 
-import { frasesFinales } from "./helpers.js";
-
-let frases = frasesFinales;
-
 function loadData() {
   fetch("quiz.json")
     .then((response) => {
